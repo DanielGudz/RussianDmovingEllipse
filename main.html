@@ -1,0 +1,94 @@
+<html> 
+ <head>
+    <title></title> 
+</head>
+ <body>
+    <p align="center"> 
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body> 
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script>
+ <script>
+var sketchProc = function(processingInstance) {
+with (processingInstance) {
+//START
+size(400, 400); 
+frameRate(30);
+
+noStroke();
+background(255,255,255);
+var x = 0;
+var y = 380;
+var delta = 2;
+var dir = 0;
+var speed = delta;
+draw = function() {
+    fill (255, 242, 0);
+    ellipse (x,y,20,20);
+    if (dir === 1) {
+        y=y-speed;
+    }
+    if (dir === 2) {
+        x=x+speed;
+    }
+    if (dir === 3) {
+        y=y+speed;
+    }
+    if (dir === 4) {
+        x=110;
+        y=250;
+        dir = 5;
+    }
+    if (dir === 5) {
+        y=y-speed;
+    }
+    
+    if (dir === 6) {
+        x=x+speed;
+    }
+    
+    if (dir === 7) {
+        y=y+speed;
+    }
+    
+    //if cordinates
+    if (y >= 380 && x <= 0) {      //bottom left//
+        dir = 1;
+    }
+    
+    if (y === 250 && x === 0) {    //left mid//
+        dir=2;
+    }
+    
+    if (y === 250 && x === 400) {    //right mid//
+        dir=3;
+    }
+    
+    if (y === 400 && x === 400) {    //bottom right//
+        dir=4;
+    }
+    
+    if (y === 0 && x === 110) {    //top 1//
+        dir=6;
+    }
+    
+    if (y === 0 && x === 250) {    //top 2//
+        dir=7;
+    }
+    
+    if (y === 252 && x === 250) {    //finish//
+        background(255, 255, 255);
+        x=0;
+        y=380;
+    }
+};
+
+//END
+}
+};
+
+var canvas = document.getElementById("mycanvas"); 
+var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
